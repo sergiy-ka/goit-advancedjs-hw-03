@@ -1,11 +1,26 @@
-import"./assets/modulepreload-polyfill-3cfb730f.js";/* empty css                      */import{S as t}from"./assets/vendor-10cb7c31.js";const i=[{preview:"https://cdn.pixabay.com/photo/2019/05/14/16/43/rchids-4202820__480.jpg",original:"https://cdn.pixabay.com/photo/2019/05/14/16/43/rchids-4202820_1280.jpg",description:"Hokkaido Flower"},{preview:"https://cdn.pixabay.com/photo/2019/05/14/22/05/container-4203677__340.jpg",original:"https://cdn.pixabay.com/photo/2019/05/14/22/05/container-4203677_1280.jpg",description:"Container Haulage Freight"},{preview:"https://cdn.pixabay.com/photo/2019/05/16/09/47/beach-4206785__340.jpg",original:"https://cdn.pixabay.com/photo/2019/05/16/09/47/beach-4206785_1280.jpg",description:"Aerial Beach View"},{preview:"https://cdn.pixabay.com/photo/2016/11/18/16/19/flowers-1835619__340.jpg",original:"https://cdn.pixabay.com/photo/2016/11/18/16/19/flowers-1835619_1280.jpg",description:"Flower Blooms"},{preview:"https://cdn.pixabay.com/photo/2018/09/13/10/36/mountains-3674334__340.jpg",original:"https://cdn.pixabay.com/photo/2018/09/13/10/36/mountains-3674334_1280.jpg",description:"Alpine Mountains"},{preview:"https://cdn.pixabay.com/photo/2019/05/16/23/04/landscape-4208571__340.jpg",original:"https://cdn.pixabay.com/photo/2019/05/16/23/04/landscape-4208571_1280.jpg",description:"Mountain Lake Sailing"},{preview:"https://cdn.pixabay.com/photo/2019/05/17/09/27/the-alps-4209272__340.jpg",original:"https://cdn.pixabay.com/photo/2019/05/17/09/27/the-alps-4209272_1280.jpg",description:"Alpine Spring Meadows"},{preview:"https://cdn.pixabay.com/photo/2019/05/16/21/10/landscape-4208255__340.jpg",original:"https://cdn.pixabay.com/photo/2019/05/16/21/10/landscape-4208255_1280.jpg",description:"Nature Landscape"},{preview:"https://cdn.pixabay.com/photo/2019/05/17/04/35/lighthouse-4208843__340.jpg",original:"https://cdn.pixabay.com/photo/2019/05/17/04/35/lighthouse-4208843_1280.jpg",description:"Lighthouse Coast Sea"}],e=document.querySelector(".gallery"),c=i.map(({preview:p,original:o,description:a})=>`<li class="gallery__item">
-              <a class="gallery__link" href="${o}">
-                <img
-                  class="gallery__image"
-                  src="${p}"
-                  data-source="${o}"
-                  alt="${a}"
-                />
-              </a> 
-            </li>`).join("");e.insertAdjacentHTML("beforeend",c);new t(".gallery a",{captionsData:"alt",captionDelay:250});
+import{i as n,S as m}from"./assets/vendor-96ed78f5.js";(function(){const s=document.createElement("link").relList;if(s&&s.supports&&s.supports("modulepreload"))return;for(const e of document.querySelectorAll('link[rel="modulepreload"]'))o(e);new MutationObserver(e=>{for(const r of e)if(r.type==="childList")for(const i of r.addedNodes)i.tagName==="LINK"&&i.rel==="modulepreload"&&o(i)}).observe(document,{childList:!0,subtree:!0});function t(e){const r={};return e.integrity&&(r.integrity=e.integrity),e.referrerPolicy&&(r.referrerPolicy=e.referrerPolicy),e.crossOrigin==="use-credentials"?r.credentials="include":e.crossOrigin==="anonymous"?r.credentials="omit":r.credentials="same-origin",r}function o(e){if(e.ep)return;e.ep=!0;const r=t(e);fetch(e.href,r)}})();const f="45255368-572b15c7c49880eb3615da83a",p=a=>{const s=new URLSearchParams({key:f,q:a,image_type:"photo",orientation:"horizontal",safesearch:!0});return fetch(`https://pixabay.com/api/?${s}`).then(t=>{if(!t.ok)throw new Error(t.status);return t.json()})},g=a=>a.map(({webformatURL:s,largeImageURL:t,tags:o,likes:e,views:r,comments:i,downloads:u})=>`
+            <li>
+                <a href="${t}">
+                    <img class="gallery__image" src="${s}" alt="${o}" />
+                </a>
+                <div class="gallery__info">
+                    <div class="gallery__likes gallery__info__item">
+                        <p class="fas fa-heart">Likes</p>
+                        <span>${e}</span>
+                    </div>
+                    <div class="gallery__views gallery__info__item">
+                        <p class="fas fa-eye">Views</p>
+                        <span>${r}</span>
+                    </div>
+                    <div class="gallery__comments gallery__info__item">
+                        <p class="fas fa-comment">Comments</p>
+                        <span>${i}</span>
+                    </div>
+                    <div class="gallery__downloads gallery__info__item">
+                        <p class="fas fa-download">Downloads</p>
+                        <span>${u}</span>
+                    </div>
+                </div>
+            </li>
+        `).join(""),l=document.querySelector(".js-search-form"),c=document.querySelector(".js-gallery"),d=document.querySelector(".js-loader");l.addEventListener("submit",y);function y(a){a.preventDefault();const s=a.currentTarget.elements.user_query.value.trim();if(s===""){n.error({title:"Error",message:"Please enter something to search.",position:"topRight"}),l.reset();return}c.innerHTML="",d.classList.remove("is-hidden"),p(s).finally(()=>{d.classList.add("is-hidden")}).then(({hits:t})=>{if(t.length===0){n.error({title:"Error",message:"Sorry, there are no images matching your search query. Please try again!",position:"topRight"});return}const o=g(t);c.innerHTML=o,new m(".gallery a",{captionsData:"alt",captionDelay:250})}).catch(t=>{n.error({title:"Error",message:"Failed to load images.",position:"topRight"})}),l.reset()}
 //# sourceMappingURL=commonHelpers.js.map

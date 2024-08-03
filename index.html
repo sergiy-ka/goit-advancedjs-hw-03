@@ -4,14 +4,31 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>GOIT JS Advanced Homework #1</title>
+    <title>GOIT JS Advanced Homework #3</title>
     
-    <link rel="stylesheet" href="/goit-advancedjs-hw-01/assets/common-eb73aa33.css">
+    <script type="module" crossorigin src="/goit-advancedjs-hw-03/commonHelpers.js"></script>
+    <link rel="modulepreload" crossorigin href="/goit-advancedjs-hw-03/assets/vendor-96ed78f5.js">
+    <link rel="stylesheet" href="/goit-advancedjs-hw-03/assets/index-6f908c05.css">
   </head>
   <body>
-    <ul>
-      <li><a href="./1-gallery.html">Image gallery</a></li>
-      <li><a href="./2-form.html">Feedback form</a></li>
-    </ul>
+    <section class="section-gallery">
+      <div class="container-gallery">
+        <form class="search-form js-search-form">
+          <input
+            class="search-input js-search-input"
+            type="text"
+            name="user_query"
+            placeholder="Search images..."
+          />
+          <button class="search-btn" type="submit">Search</button>
+        </form>
+        <ul class="gallery js-gallery"></ul>
+        <div class="loader-wrapper">
+          <span class="loader is-hidden js-loader"></span>
+        </div>
+      </div>
+    </section>
+
+    
   </body>
 </html>
