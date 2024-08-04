@@ -7,14 +7,19 @@ const searchForm = document.querySelector('.js-search-form');
 const gallery = document.querySelector('.js-gallery');
 const loader = document.querySelector('.js-loader');
 
+const lightbox = new SimpleLightbox('.gallery a', {
+  captionsData: 'alt',
+  captionDelay: 250,
+});
+
 searchForm.addEventListener('submit', onSearchFormSubmit);
 
 function onSearchFormSubmit(event) {
   event.preventDefault();
 
-  const searchedValue = event.currentTarget.elements.user_query.value.trim();
+  const searchValue = event.currentTarget.elements.user_query.value.trim();
 
-  if (searchedValue === '') {
+  if (searchValue === '') {
     iziToast.error({
       title: 'Error',
       message: 'Please enter something to search.',
@@ -28,7 +33,7 @@ function onSearchFormSubmit(event) {
 
   loader.classList.remove('is-hidden');
 
-  fetchPhotos(searchedValue)
+  fetchPhotos(searchValue)
     .finally(() => {
       loader.classList.add('is-hidden');
     })
@@ -42,13 +47,10 @@ function onSearchFormSubmit(event) {
         });
         return;
       }
-      const markup = galleryMarkup(hits);
 
-      gallery.innerHTML = markup;
-      const lightbox = new SimpleLightbox('.gallery a', {
-        captionsData: 'alt',
-        captionDelay: 250,
-      });
+      gallery.innerHTML = galleryMarkup(hits);
+
+      lightbox.refresh();
     })
     .catch(error => {
       iziToast.error({
